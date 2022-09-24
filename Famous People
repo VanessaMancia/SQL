@@ -1,0 +1,37 @@
+CREATE TABLE movies(ID INTEGER PRIMARY KEY, name TEXT, genre TEXT, release INTEGER, rate INTEGER);
+
+--TABLE WITH MOVIES AND THEIR INFO
+INSERT INTO movies VALUES
+(1,"Spider-Man","Adventure",2002,7.4),
+(2,"Nocturnal Animals","Drama",2016,7.5),
+(3,"King Kong","Action",2005,7.2),
+(4,"The Green Mile","Drama",1999,8.6),
+(5,"Django Unchained","Drama",2012,8.4),
+(6,"Rise of the Planet of the Apes","Action",2011,7.6);
+
+CREATE TABLE actors(ID INTEGER PRIMARY KEY, movies_ID INTEGER,name TEXT,age INTEGER,gender TEXT,birthplace TEXT);
+
+--TABLE WITH ACTORS AND THEIR INFO
+INSERT INTO actors(movies_ID,name,age,gender,birthplace)VALUES
+(4,"Michael Clarke Duncan",54,"Male","USA"),
+(4,"Tom Hanks",63,"Male","USA"),
+(1,"Kirsten Dunst",40,"Female","USA"),
+(1,"James Franco",44,"Male","USA"),
+(1,"Tobey Maguire",47,"Male","USA"),
+(2,"Jake Gyllenhaal",41,"Male","USA"),
+(2,"Amy Adams",48,"Female","Italy"),
+(3,"Naomi Watts",53,"Female","United Kingdom"), 
+(3,"Adrien Brody",49,"Male","USA"),
+(5,"Jamie Foxx",54,"Male","USA"),
+(5,"Leonardo DiCaprio",47,"Male","USA"),
+(6,"James Franco",44,"Male","USA"),
+(6,"Freida Pinto",37,"Female","India");
+
+SELECT*FROM movies ORDER BY release desc;
+
+SELECT*FROM actors;
+
+--USED A JOIN TO MATCH ALL ACTORS TO THE MOVIES THEY WERE IN 
+SELECT movies.name,actors.name FROM movies
+JOIN actors
+ON movies.ID=actors.movies_ID;
