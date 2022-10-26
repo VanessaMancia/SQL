@@ -1,35 +1,129 @@
-I am enforcing my learning by practicing on SQLZOO
+--I am enforcing my learning by practicing on SQLZOO
 
+--SUM/COUNT 
 Show the total population of the world
+
 SELECT SUM(population)
 FROM world;
 
 List all the continents - just once each.
+
 SELECT DISTINCT(continents)
 FROM world;
 
 Give the total GDP of Africa
+
 SELECT SUM(GDP)
 FROM world
 WHERE continent='Africa';
 
 How many countries have an area of at least 1000000
+
 SELECT COUNT(name)
 FROM world
 WHERE area >=1000000;
 
 What is the total population of ('Estonia', 'Latvia', 'Lithuania')
+
 SELECT SUM(population)
 FROM world
 WHERE name IN('Estonia','Latvia','Lithuania');
 
 For each continent show the continent and number of countries.
+
 SELECT DISTINCT(continent),COUNT(name) AS 'Number of Countries'
 FROM world
 GROUP BY continent;
 
 List the continents that have a total population of at least 100 million.
+
 SELECT continent
 FROM world
 GROUP BY continent
 HAVING SUM(population) >=100000000;
+
+--JOINS
+
+List the films where the yr is 1962 [Show id, title]
+
+SELECT id, title
+FROM movie
+WHERE yr=1962
+
+Give year of 'Citizen Kane'.
+
+SELECT yr
+FROM movie 
+WHERE title='Citizen kane';
+
+List all of the Star Trek movies, include the id, title and yr (all of these movies include the words Star Trek in the title). Order results by year.
+
+SELECT id,title,yr
+FROM movie
+WHERE title like'%Star Trek%'
+ORDER BY yr;
+
+What id number does the actor 'Glenn Close' have?
+
+SELECT id
+FROM actor
+WHERE name='Glenn Close';
+
+What is the id of the film 'Casablanca'
+
+SELECT id
+FROM movie
+WHERE title='Casablanca';
+
+Obtain the cast list for 'Casablanca'.
+what is a cast list?
+Use movieid=11768, (or whatever value you got from the previous question)
+
+SELECT a.name
+FROM actor a
+JOIN casting c
+ON a.id = c.actorid
+WHERE c.movieid = 27;
+
+Obtain the cast list for the film 'Alien'
+
+FROM actor a
+JOIN casting c
+on a.id=c.actorid
+JOIN movie m
+ON m.id=c.movieid
+WHERE m.title ='Alien';
+
+List the films in which 'Harrison Ford' has appeared
+
+SELECT m.title
+FROM movie m
+JOIN casting c
+ON m.id=c.movieid
+JOIN actor a
+ON a.id=c.actorid
+WHERE a.name='Harrison Ford';
+
+List the films where 'Harrison Ford' has appeared - but not in the starring role. 
+[Note: the ord field of casting gives the position of the actor. If ord=1 then this actor is in the starring role]
+
+SELECT m.title
+FROM movie m
+JOIN casting c
+ON m.id=c.movieid
+JOIN actor a
+ON a.id=c.actorid
+WHERE a.name='Harrison Ford'
+AND c.ord!=1;
+
+List the films together with the leading star for all 1962 films.
+ 
+SELECT m.title, a.name AS 'Leading Star'
+FROM movie m
+JOIN casting c
+ON m.id=c.movieid
+JOIN actor a
+ON a.id=c.actorid
+WHERE m.yr=1962
+AND c.ord=1;
+
