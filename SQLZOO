@@ -1,0 +1,35 @@
+I am enforcing my learning by practicing on SQLZOO
+
+Show the total population of the world
+SELECT SUM(population)
+FROM world;
+
+List all the continents - just once each.
+SELECT DISTINCT(continents)
+FROM world;
+
+Give the total GDP of Africa
+SELECT SUM(GDP)
+FROM world
+WHERE continent='Africa';
+
+How many countries have an area of at least 1000000
+SELECT COUNT(name)
+FROM world
+WHERE area >=1000000;
+
+What is the total population of ('Estonia', 'Latvia', 'Lithuania')
+SELECT SUM(population)
+FROM world
+WHERE name IN('Estonia','Latvia','Lithuania');
+
+For each continent show the continent and number of countries.
+SELECT DISTINCT(continent),COUNT(name) AS 'Number of Countries'
+FROM world
+GROUP BY continent;
+
+List the continents that have a total population of at least 100 million.
+SELECT continent
+FROM world
+GROUP BY continent
+HAVING SUM(population) >=100000000;
