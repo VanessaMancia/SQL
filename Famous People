@@ -27,11 +27,14 @@ INSERT INTO actors(movies_ID,name,age,gender,birthplace)VALUES
 (6,"James Franco",44,"Male","USA"),
 (6,"Freida Pinto",37,"Female","India");
 
-SELECT*FROM movies ORDER BY release desc;
+SELECT*
+FROM movies
+ORDER BY release desc;
 
 SELECT*FROM actors;
 
 --USED A JOIN TO MATCH ALL ACTORS TO THE MOVIES THEY WERE IN 
-SELECT movies.name,actors.name FROM movies
+SELECT movies.name,actors.name 
+FROM movies
 JOIN actors
 ON movies.ID=actors.movies_ID;
