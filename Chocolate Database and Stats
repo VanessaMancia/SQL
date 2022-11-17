@@ -21,14 +21,18 @@ INSERT INTO store VALUES
 ;
 
 --Display the database ordered by price 
-SELECT*FROM store ORDER BY PRICE DESC;
+SELECT*
+FROM store 
+ORDER BY PRICE DESC;
 
 --What are the top 5 most popular items?
-SELECT item, price,popularity FROM store
+SELECT item, price, popularity 
+FROM store
 ORDER BY popularity desc
 limit 5;
 
 --What items do we need to buy less of bc it's not popular? 
-SELECT item,quantity,popularity FROM store
+SELECT item,quantity,popularity 
+FROM store
 ORDER BY popularity asc
 limit 5;
