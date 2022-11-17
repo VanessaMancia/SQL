@@ -40,7 +40,7 @@ FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
 GROUP BY product;
 
-#7. How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? 
+#7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers? 
 SELECT 
 COUNT(DISTINCT cust.acctnum), 
 AVG(quantity*price)
