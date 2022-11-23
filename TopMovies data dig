@@ -114,29 +114,19 @@ INSERT INTO topmovies(Rank,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,
 
 SELECT*FROM topmovies;
 
---What was the domestic gross average? 
-SELECT title,studio,domestic AS "domestic gross" FROM topmovies
-GROUP BY title
-HAVING avg(domestic)>450
-ORDER BY avg(domestic)DESC
-LIMIT 5;
+/**What is the total gross of Fox Studios in 2009?**/
 
---How many movies were above and below average gross?
-SELECT COUNT(*),
-CASE
-WHEN domestic>450 THEN "above average gross"
-WHEN domestic<450 THEN "below average gross"
-END AS "domestic gross"
+SELECT SUM(worldwide) AS "total_gross", worldwide, year,studio
+FROM topmovies 
+WHERE year=2009
+AND studio='Fox';
+
+/**What are the top ten studios making over $10,000000 between the year 2000 and 2010?**/
+
+SELECT title,studio,worldwide*10000,year
 FROM topmovies
-GROUP BY "domestic gross";
+WHERE year between 2000 AND 2010
+ORDER BY worldwide desc
+LIMIT 10;
 
---Return only the rows where domestic and overseas gross are greater than 450
-SELECT title, domestic AS "domestic gross", overseas AS "overseas gross", rank FROM topmovies WHERE domestic >450 AND overseas >450
-ORDER BY "domestic gross" desc;
 
---Returning rows that meet any of some conditions
---These movies didn't do so well domestically 
-SELECT title, domestic AS "domestic gross",DomesticPct as "domestic percentage gross",rank FROM topmovies
-WHERE domestic<700 OR domestic <0.5
-ORDER BY "domestic percentage gross"
-limit 5;
