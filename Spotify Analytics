@@ -31,60 +31,60 @@ SELECT AVG(danceability),artist_name,track_name
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name,track_name;
 
---What are the top 10 artists based on popularity?
+# What are the top 10 artists based on popularity?
 SELECT artist_name,track_name,popularity
 FROM BIT_DB.Spotifydata
 ORDER BY popularity desc
 LIMIT 10;
 
-What artist released the longest song?
+# What artist released the longest song?
 SELECT artist_name,track_name,duration_ms
 FROM BIT_DB.Spotifydata
 ORDER BY duration_ms desc
 LIMIT 1;
 
-What is the average danceability for the 10 most popular songs?
+# What is the average danceability for the 10 most popular songs?
 SELECT AVG(danceability)
 FROM BIT_DB.Spotifydata
 ORDER BY popularity desc
 limit 10;
 
-How many artists have more than 2 songs in the database?
+# How many artists have more than 2 songs in the database?
 SELECT artist_name
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
 HAVING COUNT(track_name)>2;
 
-Which tracks did Doja Cat sing in? 
+# Which tracks did Doja Cat sing in? 
 SELECT artist_name,track_name
 FROM BIT_DB.Spotifydata
 WHERE artist_name='Doja Cat';
 
---Which artist has the most tracks on the list and what are the name of those tracks?
+# Which artist has the most tracks on the list and what are the name of those tracks?
 SELECT artist_name,COUNT(track_name)
 FROM BIT_DB.Spotifydata 
 GROUP BY artist_name
 ORDER BY COUNT(track_name)desc
 limit 3;
 
---Doja cat and Olivia Rodrigo both had 4 tracks whereas Bad Bunny had 3
+#Doja cat and Olivia Rodrigo both had 4 tracks whereas Bad Bunny had 3
 SELECT artist_name,track_name
 FROM BIT_DB.Spotifydata
 WHERE artist_name in('Doja Cat','Bad Bunny','Olivia Rodrigo');
 
---Out of the 3 artist who is the most popular and what track do they sing? 
+#Out of the 3 artist who is the most popular and what track do they sing? 
 SELECT artist_name,track_name,popularity
 FROM BIT_DB.Spotifydata
 WHERE artist_name in('Doja Cat','Bad Bunny','Olivia Rodrigo')
 ORDER BY popularity desc;
 
---What is the average popularity, danceability,and tempo of the tracks on this list?
+#What is the average popularity, danceability,and tempo of the tracks on this list?
 SELECT AVG(popularity),AVG(danceability),AVG(tempo)
 FROM BIT_DB.Spotifydata;
 
--Findings: The average popularity is 86.8, the average danceability is 0.68572, the average tempo is 121.08386
+#Findings: The average popularity is 86.8, the average danceability is 0.68572, the average tempo is 121.08386
 
---How do the most popular tracks compare to those averages? (There are 3 tracks with a popularity score of 95)
+#How do the most popular tracks compare to those averages? (There are 3 tracks with a popularity score of 95)
 
 SELECT track_name,popularity,
 CASE
