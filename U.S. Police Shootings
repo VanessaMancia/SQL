@@ -44,3 +44,11 @@ ORDER BY age;
 SELECT COUNT(race)
 FROM shootings
 WHERE race='Hispanic';
+
+/**Which state has the highest number of cases?**/
+
+SELECT state, COUNT(id) AS deaths 
+FROM Shootings
+GROUP BY state
+ORDER BY deaths desc;
+
