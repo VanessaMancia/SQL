@@ -39,16 +39,48 @@ ORDER BY age;
 
 /**My results indicate that there were 37 victims 20 and younger who were shot. 
 
-/**How mnay Hispanics were shot**/
-
-SELECT COUNT(race)
-FROM shootings
-WHERE race='Hispanic';
-
 /**Which state has the highest number of cases?**/
 
 SELECT state, COUNT(id) AS deaths 
 FROM Shootings
 GROUP BY state
 ORDER BY deaths desc;
+
+/**California has the highest number of cases**/
+
+/** What is the breakdown by race of the number of people who were shot while carrying NO weapon.**/
+SELECT race,  COUNT(id) AS deaths 
+FROM Shootings
+WHERE armed = 'unarmed' 
+AND manner_of_death='shot'
+GROUP BY race
+ORDER BY deaths desc;
+
+/**The data indicates that White's are more likely to be shot while unarmed**/
+
+/**Deaths per race where the victim showed signs of mental illness**/
+SELECT race, COUNT(id) AS deaths
+FROM shootings
+WHERE signs_of_mental_illness='True'
+GROUP BY race
+ORDER BY deaths desc;
+
+/**Which manner of death is most frequent?**/
+
+Select manner_of_death, COUNT(id) AS deaths
+FROM shootings
+ORDER BY deaths desc
+limit 1;
+
+/**Being shot is the most frequent**/
+
+/**If the victim was armed, what were the 3 most common types of weapon they had.**/
+
+SELECT armed,  COUNT(id) AS deaths 
+FROM Shootings
+GROUP BY armed
+ORDER BY deaths desc
+LIMIT 3;
+
+/**Results indicate that the most common was a gun followed by a knife and the rest is unknown**/
 
