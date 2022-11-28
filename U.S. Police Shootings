@@ -1,0 +1,46 @@
+#I got a dataset from kaggle and started to practice SQL 
+#First I created my table 
+
+CREATE TABLE Shootings_DB.Shootings(
+id INTEGER PRIMARY KEY,
+name VARCHAR NOT NULL,
+date NOT NULL,
+manner_of_death VARCHAR NOT NULL,
+armed VARCHAR NOT NULL,
+age INTEGER NOT NULL,
+gender CHAR NOT NULL,
+race VARCHAR NOT NULL,
+city VARCHAR NOT NULL,
+state char(2) NOT NULL,
+signs_of_mental_illness bool NOT NULL,
+threat_level VARCHAR NOT NULL,
+flee VARCHAR NOT NULL,
+body_camera bool NOT NULL,
+arms_category VARCHAR NOT NULL);
+
+
+SELECT*FROM shootings_DB.Shootings;
+
+/**Show the first name,age,race,and manner of death for those who were shot.**/
+
+SELECT name,age,race,manner_of_death
+FROM shootings
+WHERE manner_of_death='shot'
+GROUP BY race,age;
+
+/**How many victims were 20 or younger that were shot and unarmed?**/
+
+SELECT COUNT(age),manner_of_death
+FROM shootings
+WHERE age <=20
+AND armed='unarmed'
+AND manner_of_death='shot'
+ORDER BY age;
+
+/**My results indicate that there were 37 victims 20 and younger who were shot. 
+
+/**How mnay Hispanics were shot**/
+
+SELECT COUNT(race)
+FROM shootings
+WHERE race='Hispanic';
