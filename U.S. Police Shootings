@@ -1,4 +1,5 @@
 #I got a dataset from kaggle and started to practice SQL 
+#link: https://www.kaggle.com/datasets/ahsen1330/us-police-shootings
 #First I created my table 
 
 CREATE TABLE Shootings_DB.Shootings(
